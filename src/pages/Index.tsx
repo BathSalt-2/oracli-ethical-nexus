@@ -25,6 +25,8 @@ const ecoComponents = [
     icon: <ShieldCheck className="text-cyan-400 glow-cyan"/>,
     accentColor: "hover:ring-cyan-400",
     id: "aegis",
+    titleClass: "text-bright",
+    descClass: "text-bright-muted"
   },
   {
     title: "SOLUS OS Core Architecture",
@@ -33,6 +35,8 @@ const ecoComponents = [
     icon: <Brain className="text-purple-400 glow-purple"/>,
     accentColor: "hover:ring-purple-400",
     id: "solus",
+    titleClass: "text-bright",
+    descClass: "text-bright-muted"
   },
   {
     title: "Quantum Synapse Interface",
@@ -41,6 +45,8 @@ const ecoComponents = [
     icon: <Workflow className="text-pink-400 glow-pink"/>,
     accentColor: "hover:ring-pink-400",
     id: "qsi",
+    titleClass: "text-bright",
+    descClass: "text-bright-muted"
   },
   {
     title: "ASTRÆA Agent Mesh Network",
@@ -49,6 +55,8 @@ const ecoComponents = [
     icon: <Users className="text-cyan-300 glow-cyan"/>,
     accentColor: "hover:ring-cyan-300",
     id: "astraea",
+    titleClass: "text-bright",
+    descClass: "text-bright-muted"
   },
   {
     title: "SYNTH3SIS Decentralized Governance",
@@ -57,6 +65,8 @@ const ecoComponents = [
     icon: <Gavel className="text-yellow-400"/>,
     accentColor: "hover:ring-yellow-400",
     id: "synth3sis",
+    titleClass: "text-bright",
+    descClass: "text-bright-muted"
   },
   {
     title: "Mythos Memory Core",
@@ -65,6 +75,8 @@ const ecoComponents = [
     icon: <Database className="text-cyan-400 glow-cyan"/>,
     accentColor: "hover:ring-cyan-400",
     id: "mythos",
+    titleClass: "text-bright",
+    descClass: "text-bright-muted"
   },
   {
     title: "Global Civic Synthesis Network",
@@ -73,6 +85,8 @@ const ecoComponents = [
     icon: <Globe2 className="text-green-400"/>,
     accentColor: "hover:ring-green-400",
     id: "civicnetwork",
+    titleClass: "text-bright",
+    descClass: "text-bright-muted"
   },
   {
     title: "Ethical Safeguard Integration",
@@ -81,6 +95,8 @@ const ecoComponents = [
     icon: <Eye className="text-purple-300 glow-purple"/>,
     accentColor: "hover:ring-purple-300",
     id: "safeguard",
+    titleClass: "text-bright",
+    descClass: "text-bright-muted"
   },
   {
     title: "OR4CL3DevelopmentRoadmap",
@@ -89,6 +105,8 @@ const ecoComponents = [
     icon: <Scale className="text-pink-500 glow-pink"/>,
     accentColor: "hover:ring-pink-500",
     id: "roadmapcard",
+    titleClass: "text-bright",
+    descClass: "text-bright-muted"
   },
 ];
 
@@ -106,7 +124,7 @@ const Index = () => (
           <div className="absolute bottom-0 right-1/3 w-96 h-96 bg-purple-500/3 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
 
-        <h2 className="text-4xl md:text-5xl font-black mb-16 text-left md:text-center text-holographic drop-shadow-2xl relative z-10">
+        <h2 className="text-4xl md:text-5xl font-black mb-16 text-left md:text-center text-bright drop-shadow-2xl relative z-10">
           OR4CL3 Ecosystem Modules
         </h2>
         
@@ -123,7 +141,7 @@ const Index = () => (
       <RoadmapTimeline />
     </main>
     
-    <footer className="py-8 px-6 text-cyan-100/60 text-sm flex justify-between items-center backdrop-holographic border-t border-cyan-400/20 relative z-10">
+    <footer className="py-8 px-6 text-bright-muted text-sm flex justify-between items-center backdrop-holographic border-t border-cyan-400/20 relative z-10">
       <span>
         &copy; {new Date().getFullYear()} OR4CL3&nbsp;AI Solutions. Crafted ethically, powered by quantum consciousness.
       </span>
