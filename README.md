@@ -3,6 +3,8 @@
 
 > **Code Like It's Music. Think Like It's Art. Build Like It's War.**
 
+https://or4cl3ai-1.netlify.app/
+
 OR4CL3 is a next-generation ethical AI ecosystem built on the Algorand blockchain. It unites quantum-classical AI, decentralized governance, and privacy-first infrastructure to set a revolutionary new standard in responsible, transparent artificial intelligence.
 
 ## 🌌 Core Architecture
