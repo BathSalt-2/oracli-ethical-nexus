@@ -147,6 +147,26 @@
   75% { transform: translate(20px, 5px) rotate(0.5deg); opacity: 0.4; }
 }
 
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spin-slow-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes loading-bar-animation {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+
 @keyframes neon-glow {
   0%, 100% { box-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor; }
   50% { box-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor; }
@@ -160,6 +180,16 @@
 @keyframes float-3d {
   0%, 100% { transform: translateY(0px) rotateX(0deg); }
   50% { transform: translateY(-10px) rotateX(5deg); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 /* Custom utility classes */
@@ -211,5 +241,24 @@
 
   .transform-3d {
     transform-style: preserve-3d;
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 10s linear infinite;
+  }
+  .animate-spin-slow-reverse {
+    animation: spin-slow-reverse 12s linear infinite;
+  }
+  .animate-loading-bar {
+    animation: loading-bar-animation 5s ease-out forwards;
+  }
+  .animate-pulse-slow {
+    animation: pulse-slow 3s ease-in-out infinite;
+  }
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out forwards;
+  }
+  .animate-scale-in {
+    animation: scale-in 0.3s ease-out forwards;
   }
 }

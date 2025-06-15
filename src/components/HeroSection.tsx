@@ -1,6 +1,7 @@
 
 import React from "react";
 import { cn } from "@/lib/utils";
+import { Link } from "react-router-dom";
 
 const HeroSection: React.FC = () => (
   <section className="relative isolate pt-12 pb-20 flex flex-col md:flex-row items-center justify-center bg-transparent overflow-hidden min-h-screen">
@@ -45,13 +46,13 @@ const HeroSection: React.FC = () => (
       
       <div className="mt-10 relative group">
         <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-neon-glow"></div>
-        <a
-          href="#roadmap"
+        <Link
+          to="/dashboard"
           className="relative inline-block text-lg font-bold transition-all duration-300
            bg-gradient-to-r from-cyan-500/90 to-purple-500/90 text-white px-8 py-4 rounded-xl shadow-2xl hover:shadow-cyan-500/25 focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-gray-900 backdrop-blur-sm border border-cyan-400/30 transform hover:scale-105"
         >
           🔥 Grab Your Free World-Changer Pass
-        </a>
+        </Link>
       </div>
     </div>
     
