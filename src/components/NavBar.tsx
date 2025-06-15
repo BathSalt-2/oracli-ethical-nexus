@@ -23,7 +23,7 @@ const NavBar: React.FC = () => (
             className="w-12 h-12 rounded-full border-2 border-cyan-400/50 shadow-lg relative z-10 group-hover:border-cyan-400 transition-colors duration-300 glow-cyan"
           />
         </div>
-        <span className="font-black text-2xl text-holographic uppercase tracking-wider transform group-hover:scale-105 transition-transform duration-300">
+        <span className="font-black text-2xl text-bright-cyan uppercase tracking-wider transform group-hover:scale-105 transition-transform duration-300 drop-shadow-lg">
           OR4CL3
         </span>
       </Link>
@@ -31,7 +31,7 @@ const NavBar: React.FC = () => (
       <div className="gap-8 hidden md:flex">
         {navLinks.map((l) => {
           const linkClasses = cn(
-            "px-3 py-2 font-bold text-cyan-100 hover:text-holographic transition-all duration-300 relative group transform hover:scale-105",
+            "px-3 py-2 font-bold text-bright hover:text-holographic transition-all duration-300 relative group transform hover:scale-105",
             "after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-gradient-to-r after:from-cyan-400 after:via-purple-500 after:to-pink-500 after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left",
             "before:content-[''] before:absolute before:-inset-2 before:bg-cyan-400/10 before:rounded-lg before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-100"
           );
