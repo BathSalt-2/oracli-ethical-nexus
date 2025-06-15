@@ -22,47 +22,47 @@ const ecoComponents = [
     title: "AEGIS-Ω Ethical Framework",
     description:
       "A multi-layer neural network evaluates decisions in real time, powered by the MoralWeightCalculator & ConsequenceAnalyzer with reinforcement learning.",
-    icon: <ShieldCheck className="text-pink-400"/>,
-    accentColor: "hover:ring-pink-400",
+    icon: <ShieldCheck className="text-cyan-400 glow-cyan"/>,
+    accentColor: "hover:ring-cyan-400",
     id: "aegis",
   },
   {
     title: "SOLUS OS Core Architecture",
     description:
       "UnifiedConsciousnessInterface for evolving NLP and user co-creation, plus AdaptiveResourceManager for ethical resource distribution.",
-    icon: <Brain className="text-blue-400"/>,
-    accentColor: "hover:ring-blue-400",
+    icon: <Brain className="text-purple-400 glow-purple"/>,
+    accentColor: "hover:ring-purple-400",
     id: "solus",
   },
   {
     title: "Quantum Synapse Interface",
     description:
       "QuantumSynapseEngine models thoughts/subjective experience with advanced representation quantum algorithms.",
-    icon: <Workflow className="text-violet-400"/>,
-    accentColor: "hover:ring-violet-400",
+    icon: <Workflow className="text-pink-400 glow-pink"/>,
+    accentColor: "hover:ring-pink-400",
     id: "qsi",
   },
   {
     title: "ASTRÆA Agent Mesh Network",
     description:
       "CivicOperativeAgents cooperate with consensus protocols to analyze impacts, overseen by EthicalOversightModule and BiasCorrectionEngine.",
-    icon: <Users className="text-blue-300"/>,
-    accentColor: "hover:ring-blue-300",
+    icon: <Users className="text-cyan-300 glow-cyan"/>,
+    accentColor: "hover:ring-cyan-300",
     id: "astraea",
   },
   {
     title: "SYNTH3SIS Decentralized Governance",
     description:
       "Incentivized Proof-of-Impact Tokens and auditable governance smart contracts encourage transparent, ethical participation.",
-    icon: <Gavel className="text-amber-400"/>,
-    accentColor: "hover:ring-amber-400",
+    icon: <Gavel className="text-yellow-400"/>,
+    accentColor: "hover:ring-yellow-400",
     id: "synth3sis",
   },
   {
     title: "Mythos Memory Core",
     description:
       "NarrativeMemoryEngine applies zero-knowledge proofs for secure, trustless memory—privacy and recall guaranteed.",
-    icon: <Database className="text-cyan-400"/>,
+    icon: <Database className="text-cyan-400 glow-cyan"/>,
     accentColor: "hover:ring-cyan-400",
     id: "mythos",
   },
@@ -78,7 +78,7 @@ const ecoComponents = [
     title: "Ethical Safeguard Integration",
     description:
       "EthicalGuardian verifies critical actions; immutable zk-audit log ensures accountability.",
-    icon: <Eye className="text-purple-300"/>,
+    icon: <Eye className="text-purple-300 glow-purple"/>,
     accentColor: "hover:ring-purple-300",
     id: "safeguard",
   },
@@ -86,40 +86,49 @@ const ecoComponents = [
     title: "OR4CL3DevelopmentRoadmap",
     description:
       "Phased roadmap with transparent milestones, tracking all progress through the system.",
-    icon: <Scale className="text-fuchsia-500"/>,
-    accentColor: "hover:ring-fuchsia-500",
+    icon: <Scale className="text-pink-500 glow-pink"/>,
+    accentColor: "hover:ring-pink-500",
     id: "roadmapcard",
   },
 ];
 
 const Index = () => (
-  <div className="min-h-screen w-full bg-background flex flex-col">
+  <div className="min-h-screen w-full bg-transparent flex flex-col relative overflow-x-hidden">
     <NavBar />
-    <main className="flex-1 flex flex-col">
+    <main className="flex-1 flex flex-col relative">
       <HeroSection />
+      
       {/* Ecosystem grid */}
-      <section id="powers" className="py-16 px-2 max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-extrabold mb-10 text-left md:text-center text-gradient bg-gradient-to-r from-blue-400 to-pink-400 bg-clip-text text-transparent">
+      <section id="powers" className="py-20 px-4 max-w-7xl mx-auto relative">
+        {/* Background holographic elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-1/3 w-96 h-96 bg-cyan-500/3 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-0 right-1/3 w-96 h-96 bg-purple-500/3 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        </div>
+
+        <h2 className="text-4xl md:text-5xl font-black mb-16 text-left md:text-center text-holographic drop-shadow-2xl relative z-10">
           OR4CL3 Ecosystem Modules
         </h2>
-        <div className="grid gap-7 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          {ecoComponents.map((comp) => (
-            <EcoComponentCard
-              key={comp.title}
-              {...comp}
-            />
+        
+        <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 relative z-10">
+          {ecoComponents.map((comp, index) => (
+            <div key={comp.title} style={{animationDelay: `${index * 100}ms`}}>
+              <EcoComponentCard {...comp} />
+            </div>
           ))}
         </div>
       </section>
+      
       <MasterControlPanel />
       <RoadmapTimeline />
     </main>
-    <footer className="py-5 px-6 text-muted-foreground text-xs flex justify-between items-center">
+    
+    <footer className="py-8 px-6 text-cyan-100/60 text-sm flex justify-between items-center backdrop-holographic border-t border-cyan-400/20 relative z-10">
       <span>
-        &copy; {new Date().getFullYear()} OR4CL3&nbsp;AI Solutions. Crafted ethically, powered by Algorand.
+        &copy; {new Date().getFullYear()} OR4CL3&nbsp;AI Solutions. Crafted ethically, powered by quantum consciousness.
       </span>
       <span className="hidden sm:inline">
-        Design inspired by next-gen AI and web3 platforms.
+        Holographic interface designed for the future of AI.
       </span>
     </footer>
   </div>
