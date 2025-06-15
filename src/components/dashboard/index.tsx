@@ -1,9 +1,10 @@
+
 import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Loader } from '@react-three/drei';
 import Scene from './Scene';
 import ChatInterface from './ChatInterface';
-import { Settings } from "lucide-react";
+import { Settings, Command } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const Dashboard: React.FC = () => {
@@ -17,6 +18,16 @@ const Dashboard: React.FC = () => {
         </Canvas>
       </Suspense>
       <ChatInterface />
+
+      {/* System Command Center button */}
+      <button
+        className="fixed z-40 top-6 right-6 bg-card/70 backdrop-holographic border-holographic px-6 py-3 rounded-full shadow-lg flex items-center gap-3 hover:scale-110 transition-transform"
+        onClick={() => navigate("/system-command")}
+        aria-label="Open System Command Center"
+      >
+        <Command className="text-cyan-400 w-6 h-6" />
+        <span className="text-cyan-400 font-bold hidden md:inline">Command Center</span>
+      </button>
 
       {/* Floating settings button / gear, mobile-friendly */}
       <button
