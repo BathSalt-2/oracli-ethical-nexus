@@ -4,6 +4,7 @@ import { Canvas } from '@react-three/fiber';
 import { Loader } from '@react-three/drei';
 import Scene from './Scene';
 import ChatInterface from './ChatInterface';
+import AISystemMonitor from '@/components/AISystemMonitor';
 import { Settings, Command } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -17,6 +18,8 @@ const Dashboard: React.FC = () => {
           <Scene />
         </Canvas>
       </Suspense>
+      
+      <AISystemMonitor />
       <ChatInterface />
 
       {/* System Command Center button */}
