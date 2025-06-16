@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -201,7 +200,7 @@ const ChatInterface: React.FC = () => {
   if (!isOpen) {
     return (
       <Button
-        className="fixed bottom-4 right-4 backdrop-holographic glow-cyan animate-float-3d z-50"
+        className="fixed bottom-4 right-4 bg-slate-900/95 border border-cyan-400/30 backdrop-blur-sm glow-cyan animate-float-3d z-50 hover:bg-slate-800/95"
         onClick={() => setIsOpen(true)}
         size="lg"
       >
@@ -213,7 +212,7 @@ const ChatInterface: React.FC = () => {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 w-full max-w-md h-[80vh] backdrop-holographic rounded-2xl shadow-2xl border-holographic flex flex-col p-4 animate-scale-in z-40">
+    <div className="fixed bottom-4 right-4 w-full max-w-md h-[80vh] bg-slate-900/95 backdrop-blur-md rounded-2xl shadow-2xl border border-cyan-400/20 flex flex-col p-4 animate-scale-in z-40">
       <div className="flex justify-between items-center mb-4 flex-shrink-0">
         <div className="flex items-center gap-2">
           <Brain className="w-6 h-6 text-cyan-400 animate-pulse" />
@@ -242,28 +241,28 @@ const ChatInterface: React.FC = () => {
             variant="outline"
             size="sm"
             onClick={action.action}
-            className="text-xs bg-cyan-400/10 border-cyan-400/30 text-cyan-300 hover:bg-cyan-400/20"
+            className="text-xs bg-slate-800/50 border-cyan-400/30 text-cyan-300 hover:bg-slate-700/70 transition-all duration-200"
           >
             {action.label}
           </Button>
         ))}
       </div>
       
-      <div className="flex-1 overflow-y-auto pr-2 space-y-4 mb-4 chat-scroll">
+      <div className="flex-1 overflow-y-auto pr-2 space-y-4 mb-4 bg-slate-800/30 rounded-lg p-3 border border-slate-700/50">
         {messages.map((msg, i) => (
           <div key={i} className={cn('flex w-full', msg.from === 'ai' ? 'justify-start' : 'justify-end')}>
             <div className={cn(
-              'p-3 rounded-lg max-w-[80%] animate-fade-in relative',
+              'p-3 rounded-lg max-w-[80%] animate-fade-in relative backdrop-blur-sm',
               msg.from === 'ai' 
                 ? cn(
-                    'bg-secondary text-cyan-100',
-                    msg.type === 'suggestion' && 'border border-yellow-400/30 bg-yellow-400/10',
-                    msg.type === 'alert' && 'border border-red-400/30 bg-red-400/10',
-                    msg.type === 'analysis' && 'border border-purple-400/30 bg-purple-400/10',
-                    msg.type === 'reflection' && 'border border-blue-400/30 bg-blue-400/10',
-                    msg.type === 'uncertainty' && 'border border-orange-400/30 bg-orange-400/10'
+                    'bg-slate-700/60 text-cyan-100 border border-slate-600/50',
+                    msg.type === 'suggestion' && 'border-yellow-400/30 bg-yellow-400/10',
+                    msg.type === 'alert' && 'border-red-400/30 bg-red-400/10',
+                    msg.type === 'analysis' && 'border-purple-400/30 bg-purple-400/10',
+                    msg.type === 'reflection' && 'border-blue-400/30 bg-blue-400/10',
+                    msg.type === 'uncertainty' && 'border-orange-400/30 bg-orange-400/10'
                   )
-                : 'bg-primary text-primary-foreground'
+                : 'bg-cyan-600/80 text-white border border-cyan-500/50'
             )}>
               {msg.from === 'ai' && (
                 <div className="flex items-center gap-2 mb-2">
@@ -292,7 +291,7 @@ const ChatInterface: React.FC = () => {
         
         {isTyping && (
           <div className="flex justify-start">
-            <div className="p-3 rounded-lg bg-secondary text-cyan-100 animate-fade-in">
+            <div className="p-3 rounded-lg bg-slate-700/60 text-cyan-100 animate-fade-in border border-slate-600/50 backdrop-blur-sm">
               <div className="flex items-center gap-2">
                 <Brain className="w-4 h-4 text-cyan-400 animate-pulse" />
                 <span className="text-xs text-cyan-300 font-semibold">Recursive processing active...</span>
@@ -311,7 +310,7 @@ const ChatInterface: React.FC = () => {
         <div ref={messagesEndRef} />
       </div>
       
-      <div className="flex gap-2 flex-shrink-0">
+      <div className="flex gap-2 flex-shrink-0 bg-slate-800/30 rounded-lg p-2 border border-slate-700/50">
         <Textarea
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -322,13 +321,13 @@ const ChatInterface: React.FC = () => {
             }
           }}
           placeholder="Engage with OR4CL3 about consciousness, ethics, or emergent cognition..."
-          className="bg-transparent text-white placeholder:text-cyan-100/50 resize-none min-h-[40px]"
+          className="bg-slate-700/50 border-slate-600/50 text-white placeholder:text-cyan-100/50 resize-none min-h-[40px] focus:border-cyan-400/50"
           rows={1}
         />
         <Button 
           onClick={handleSend} 
           size="icon" 
-          className="h-auto bg-cyan-600 hover:bg-cyan-700"
+          className="h-auto bg-cyan-600 hover:bg-cyan-700 transition-colors duration-200"
           disabled={isTyping}
         >
           <Send className="w-4 h-4" />
