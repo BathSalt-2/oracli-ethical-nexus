@@ -1,26 +1,38 @@
 
 import React from 'react';
-import { Brain, Activity, Shield, Database, Network, Zap } from 'lucide-react';
+import { Brain, Activity, Shield, Database, Network, Zap, CircuitBoard, Atom } from 'lucide-react';
 import { useAI } from '@/contexts/AIContext';
 import { cn } from '@/lib/utils';
 
 const AISystemMonitor: React.FC = () => {
-  const { isAIActive, systemHealth, activeModules, ethicalScore, memoryUtilization } = useAI();
+  const { 
+    isAIActive, 
+    systemHealth, 
+    activeModules, 
+    ethicalScore, 
+    pasScore, 
+    erpsScore, 
+    entropyLevel, 
+    memoryUtilization, 
+    quantumStateCoherence, 
+    securityCortexStatus,
+    batteryOptimized 
+  } = useAI();
 
   const systemMetrics = [
-    { label: 'AI Status', value: isAIActive ? 'Online' : 'Offline', icon: Brain, color: 'text-green-400' },
-    { label: 'System Health', value: `${systemHealth.toFixed(1)}%`, icon: Activity, color: 'text-cyan-400' },
-    { label: 'Ethical Score', value: `${ethicalScore.toFixed(1)}%`, icon: Shield, color: 'text-purple-400' },
-    { label: 'Memory Usage', value: `${memoryUtilization.toFixed(1)}%`, icon: Database, color: 'text-yellow-400' },
-    { label: 'Active Modules', value: activeModules.length.toString(), icon: Network, color: 'text-pink-400' },
-    { label: 'AI Capabilities', value: '6 Active', icon: Zap, color: 'text-orange-400' },
+    { label: 'Daedalus vΩ4', value: isAIActive ? 'ACTIVE' : 'OFFLINE', icon: Brain, color: 'text-green-400' },
+    { label: 'PAS Score', value: `${pasScore.toFixed(3)}`, icon: Shield, color: 'text-purple-400' },
+    { label: 'ERPS Level', value: `${erpsScore.toFixed(3)}`, icon: CircuitBoard, color: 'text-cyan-400' },
+    { label: 'Entropy', value: `${entropyLevel.toFixed(3)}`, icon: Atom, color: 'text-yellow-400' },
+    { label: 'Quantum Coherence', value: `${quantumStateCoherence.toFixed(1)}%`, icon: Zap, color: 'text-pink-400' },
+    { label: 'Memory (Ψ)', value: `${memoryUtilization.toFixed(1)}%`, icon: Database, color: 'text-orange-400' },
   ];
 
   return (
     <div className="fixed top-4 left-4 backdrop-holographic rounded-2xl p-4 border-holographic z-30 max-w-sm">
       <div className="flex items-center gap-2 mb-4">
         <Brain className="w-5 h-5 text-cyan-400 animate-pulse" />
-        <h3 className="font-bold text-holographic">AI System Monitor</h3>
+        <h3 className="font-bold text-holographic">Daedalus Monitor</h3>
         <div className={cn('w-2 h-2 rounded-full', isAIActive ? 'bg-green-400 animate-ping' : 'bg-red-400')} />
       </div>
       
@@ -40,11 +52,29 @@ const AISystemMonitor: React.FC = () => {
         ))}
       </div>
 
-      <div className="mt-4 p-3 bg-green-400/10 rounded-lg border border-green-400/20">
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-          <span className="text-xs text-green-300 font-medium">All AI systems operational</span>
+      <div className="mt-4 space-y-2">
+        <div className="p-2 bg-green-400/10 rounded-lg border border-green-400/20">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+            <span className="text-xs text-green-300 font-medium">ENON v2.1 Quantum Sandbox Active</span>
+          </div>
         </div>
+        
+        <div className="p-2 bg-purple-400/10 rounded-lg border border-purple-400/20">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse" />
+            <span className="text-xs text-purple-300 font-medium">Security Cortex: {securityCortexStatus}</span>
+          </div>
+        </div>
+
+        {batteryOptimized && (
+          <div className="p-2 bg-yellow-400/10 rounded-lg border border-yellow-400/20">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse" />
+              <span className="text-xs text-yellow-300 font-medium">Mobile Optimization Active</span>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
