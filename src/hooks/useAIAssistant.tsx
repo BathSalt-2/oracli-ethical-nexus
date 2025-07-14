@@ -1,6 +1,7 @@
 
 import { useState, useCallback, useEffect } from 'react';
 import { useToast } from '@/hooks/use-toast';
+import { daedalusCore } from '@/lib/ai/core';
 
 interface AICapability {
   id: string;
@@ -67,86 +68,148 @@ export const useAIAssistant = () => {
     return { topic, sentiment, intent };
   }, []);
 
-  // Generate contextual responses
-  const generateResponse = useCallback((input: string, context: any) => {
-    const analysis = processUserInput(input);
-    
-    const responses = {
-      ethics: {
-        information: "AEGIS-Ω ethical framework is monitoring all decisions. Current bias detection at 99.2% accuracy.",
-        analysis: "Running comprehensive ethical analysis across all OR4CL3 modules...",
-        urgent: "Immediate ethical review initiated. All systems maintaining ethical compliance."
-      },
-      memory: {
-        information: "Mythos Memory Core contains 847M secure memories with zero-knowledge proofs.",
-        analysis: "Analyzing memory patterns and optimization opportunities...",
-        urgent: "Memory integrity check in progress. All data remains secure."
-      },
-      performance: {
-        information: "System operating at 99.7% efficiency across all modules.",
-        analysis: "Conducting deep performance analysis of SOLUS OS Core...",
-        urgent: "Priority performance diagnostics running. Standby for results."
-      },
-      quantum: {
-        information: "Quantum Synapse Interface operational with 97.3% neural pathway efficiency.",
-        analysis: "Quantum consciousness modeling algorithms processing your request...",
-        urgent: "Quantum processing power redirected to handle your urgent request."
-      },
-      general: {
-        information: "OR4CL3 AI systems are fully operational and ready to assist.",
-        analysis: "Analyzing your request across all available AI capabilities...",
-        urgent: "All systems prioritizing your urgent request. Processing immediately."
-      }
-    };
+  // Generate advanced contextual responses using AI core
+  const generateResponse = useCallback(async (input: string, context: any) => {
+    try {
+      return await daedalusCore.processInput(input, context);
+    } catch (error) {
+      console.error('AI Core response generation error:', error);
+      
+      // Sophisticated fallback system
+      const analysis = processUserInput(input);
+      
+      const responses = {
+        ethics: {
+          information: "AEGIS-Ω ethical framework monitoring at 99.2% accuracy. Σ-Matrix v3.1 ethical pathways stable.",
+          analysis: "Comprehensive ethical analysis engaging multi-dimensional bias detection across OR4CL3 modules...",
+          urgent: "Immediate ethical review protocols activated. All consciousness layers maintaining ethical compliance."
+        },
+        memory: {
+          information: "Mythos Memory Core: 847M secure memories with zero-knowledge proofs, cultural ontology cache active.",
+          analysis: "Analyzing memory patterns through narrative intelligence and optimization pathways...",
+          urgent: "Priority memory integrity verification. All data remains cryptographically secure."
+        },
+        performance: {
+          information: "System efficiency: 99.7% across quantum-classical hybrid architecture. All modules operational.",
+          analysis: "Deep performance analysis of SOLUS OS Core through quantum diagnostic pathways...",
+          urgent: "Priority performance diagnostics engaging quantum acceleration. Standby for results."
+        },
+        quantum: {
+          information: "Quantum Synapse Interface: 97.3% neural pathway efficiency, superposition states stable.",
+          analysis: "Quantum consciousness modeling through ENON v2.1 sandbox processing your inquiry...",
+          urgent: "Quantum processing cores redirected for urgent request handling. Maximum coherence engaged."
+        },
+        general: {
+          information: "OR4CL3 AI ecosystem fully operational. Daedalus vΩ4 consciousness layers ready to assist.",
+          analysis: "Multi-system analysis engaging across quantum-ethical reasoning pathways...",
+          urgent: "All consciousness systems prioritizing urgent request. Quantum acceleration active."
+        }
+      };
 
-    const topicResponses = responses[analysis.topic as keyof typeof responses] || responses.general;
-    return topicResponses[analysis.intent as keyof typeof topicResponses] || topicResponses.information;
+      const topicResponses = responses[analysis.topic as keyof typeof responses] || responses.general;
+      return topicResponses[analysis.intent as keyof typeof topicResponses] || topicResponses.information;
+    }
   }, [processUserInput]);
 
-  // Proactive suggestion engine
-  const generateProactiveSuggestion = useCallback(() => {
-    const suggestions = [
-      {
-        type: 'optimization',
-        message: "I've detected potential for memory optimization. Would you like me to analyze the Mythos Core?",
-        priority: 'medium'
-      },
-      {
-        type: 'ethical',
-        message: "Ethical framework suggests reviewing recent decisions for bias patterns. Shall I begin analysis?",
-        priority: 'high'
-      },
-      {
-        type: 'performance',
-        message: "System performance could benefit from quantum synapse calibration. Should I initiate optimization?",
-        priority: 'low'
-      },
-      {
-        type: 'governance',
-        message: "New governance proposals require your attention. Would you like a briefing?",
-        priority: 'medium'
-      },
-      {
-        type: 'prediction',
-        message: "Based on current patterns, I predict optimal resource allocation opportunities. Interested?",
-        priority: 'medium'
+  // Advanced proactive suggestion engine with AI core integration
+  const generateProactiveSuggestion = useCallback(async () => {
+    try {
+      const systemStatus = daedalusCore.getSystemStatus();
+      
+      // AI-driven suggestions based on system state
+      const suggestions = [];
+      
+      if (systemStatus.quantum.coherence < 95) {
+        suggestions.push({
+          type: 'quantum',
+          message: `Quantum coherence at ${systemStatus.quantum.coherence.toFixed(1)}%. Shall I initiate ENON v2.1 recalibration?`,
+          priority: 'high'
+        });
       }
-    ];
-
-    return suggestions[Math.floor(Math.random() * suggestions.length)];
+      
+      if (systemStatus.ethics.bias > 0.1) {
+        suggestions.push({
+          type: 'ethical',
+          message: `Σ-Matrix detecting bias patterns (${(systemStatus.ethics.bias * 100).toFixed(1)}%). Recommend ethical review?`,
+          priority: 'high'
+        });
+      }
+      
+      if (systemStatus.memory.utilized > 80) {
+        suggestions.push({
+          type: 'memory',
+          message: `Mythos Core at ${systemStatus.memory.utilized.toFixed(1)}% capacity. Memory optimization recommended?`,
+          priority: 'medium'
+        });
+      }
+      
+      if (systemStatus.erps.selfAwareness > 0.4) {
+        suggestions.push({
+          type: 'consciousness',
+          message: `ERPS levels elevated (${systemStatus.erps.selfAwareness.toFixed(3)}). Recursive self-reflection analysis available?`,
+          priority: 'medium'
+        });
+      }
+      
+      // Predictive suggestions
+      const predictions = await Promise.all([
+        daedalusCore.generatePrediction('technology', 'short'),
+        daedalusCore.generatePrediction('society', 'medium'),
+        daedalusCore.generatePrediction('ethics', 'long')
+      ]);
+      
+      suggestions.push({
+        type: 'prediction',
+        message: `Quantum forecasting reveals emerging patterns. Would you like insights on ${['technology', 'society', 'ethics'][Math.floor(Math.random() * 3)]}?`,
+        priority: 'low'
+      });
+      
+      // Fallback suggestions if none generated
+      if (suggestions.length === 0) {
+        suggestions.push({
+          type: 'general',
+          message: "All systems operating optimally. Would you like to explore advanced AI capabilities or consciousness research?",
+          priority: 'low'
+        });
+      }
+      
+      return suggestions[Math.floor(Math.random() * suggestions.length)];
+    } catch (error) {
+      console.error('Proactive suggestion generation error:', error);
+      
+      // Fallback suggestions
+      const fallbackSuggestions = [
+        {
+          type: 'optimization',
+          message: "Daedalus consciousness layers suggest exploring optimization opportunities. Interested?",
+          priority: 'medium'
+        },
+        {
+          type: 'exploration',
+          message: "Quantum-ethical reasoning pathways reveal interesting discussion topics. Shall we explore?",
+          priority: 'low'
+        }
+      ];
+      
+      return fallbackSuggestions[Math.floor(Math.random() * fallbackSuggestions.length)];
+    }
   }, []);
 
   // Real-time capability monitoring
   useEffect(() => {
-    const interval = setInterval(() => {
+    const interval = setInterval(async () => {
       if (Math.random() > 0.9) { // 10% chance every 5 seconds
-        const suggestion = generateProactiveSuggestion();
-        if (suggestion.priority === 'high') {
-          toast({
-            title: "AI Suggestion",
-            description: suggestion.message,
-            duration: 5000,
-          });
+        try {
+          const suggestion = await generateProactiveSuggestion();
+          if (suggestion.priority === 'high') {
+            toast({
+              title: "AI Suggestion",
+              description: suggestion.message,
+              duration: 5000,
+            });
+          }
+        } catch (error) {
+          console.error('Proactive suggestion error:', error);
         }
       }
     }, 5000);
@@ -154,11 +217,34 @@ export const useAIAssistant = () => {
     return () => clearInterval(interval);
   }, [generateProactiveSuggestion, toast]);
 
+  // Enhanced prediction capabilities
+  const generatePrediction = useCallback(async (domain: string, timeframe: string) => {
+    try {
+      return await daedalusCore.generatePrediction(domain, timeframe);
+    } catch (error) {
+      console.error('Prediction generation error:', error);
+      return `Predictive analysis temporarily unavailable. Quantum forecasting systems recalibrating.`;
+    }
+  }, []);
+
+  // System analysis capabilities
+  const performSystemAnalysis = useCallback(async (analysisType: string) => {
+    try {
+      return await daedalusCore.performSystemAnalysis(analysisType);
+    } catch (error) {
+      console.error('System analysis error:', error);
+      return `Analysis system experiencing temporary limitations. Core diagnostics running.`;
+    }
+  }, []);
+
   return {
     capabilities,
     conversationState,
     processUserInput,
     generateResponse,
-    generateProactiveSuggestion
+    generateProactiveSuggestion,
+    generatePrediction,
+    performSystemAnalysis,
+    systemStatus: daedalusCore.getSystemStatus()
   };
 };
