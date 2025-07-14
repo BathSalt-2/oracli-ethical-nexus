@@ -2,28 +2,26 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import SecureStorage from "@/lib/storage";
 
 const Settings: React.FC = () => {
   const navigate = useNavigate();
 
-  // Theme toggle for demo, replace as needed
+  // Secure theme toggle using validated storage
   const handleThemeToggle = () => {
-    if (document.documentElement.classList.contains("dark")) {
+    const currentTheme = SecureStorage.getTheme();
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+    
+    if (newTheme === "light") {
       document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
     } else {
       document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
     }
+    
+    SecureStorage.setTheme(newTheme);
   };
 
-  const theme =
-    (typeof window !== "undefined" &&
-      (localStorage.getItem("theme") ||
-        (window.matchMedia &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light"))) || "dark";
+  const theme = SecureStorage.getTheme();
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-background p-8 animate-fade-in">

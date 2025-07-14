@@ -1,5 +1,6 @@
 import * as React from "react"
 import * as RechartsPrimitive from "recharts"
+import DOMPurify from "dompurify"
 
 import { cn } from "@/lib/utils"
 
@@ -74,25 +75,45 @@ const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
     return null
   }
 
-  return (
-    <style
-      dangerouslySetInnerHTML={{
-        __html: Object.entries(THEMES)
-          .map(
-            ([theme, prefix]) => `
-${prefix} [data-chart=${id}] {
+  // Sanitize the chart ID to prevent CSS injection
+  const sanitizedId = id.replace(/[^a-zA-Z0-9-_]/g, '')
+
+  const css = Object.entries(THEMES)
+    .map(
+      ([theme, prefix]) => `
+${prefix} [data-chart="${sanitizedId}"] {
 ${colorConfig
   .map(([key, itemConfig]) => {
+    // Sanitize key to prevent CSS injection
+    const sanitizedKey = key.replace(/[^a-zA-Z0-9-_]/g, '')
     const color =
       itemConfig.theme?.[theme as keyof typeof itemConfig.theme] ||
       itemConfig.color
-    return color ? `  --color-${key}: ${color};` : null
+    
+    // Validate color format (hex, hsl, rgb, or CSS color names)
+    const colorRegex = /^(#[0-9a-fA-F]{3,8}|rgb\(.*\)|rgba\(.*\)|hsl\(.*\)|hsla\(.*\)|[a-zA-Z]+)$/
+    const isValidColor = color && colorRegex.test(color)
+    
+    return isValidColor ? `  --color-${sanitizedKey}: ${color};` : null
   })
+  .filter(Boolean)
   .join("\n")}
 }
 `
-          )
-          .join("\n"),
+    )
+    .join("\n")
+
+  // Sanitize the CSS content before injecting
+  const sanitizedCSS = DOMPurify.sanitize(css, { 
+    ALLOWED_TAGS: [],
+    ALLOWED_ATTR: [],
+    FORBID_CONTENTS: ['script', 'style']
+  })
+
+  return (
+    <style
+      dangerouslySetInnerHTML={{
+        __html: sanitizedCSS,
       }}
     />
   )

@@ -6,6 +6,7 @@ import { Send, MessageSquare, Brain, Zap, Eye, Database, Shield, Activity, Circu
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
 import { useAI } from '@/contexts/AIContext';
+import { validateChatMessage, RateLimit } from '@/lib/validation';
 
 interface Message {
   from: 'user' | 'ai';
@@ -31,6 +32,9 @@ const ChatInterface: React.FC = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
   const { triggerAIAnalysis, triggerERPSReflection, pasScore, erpsScore } = useAI();
+  
+  // Rate limiting for chat messages
+  const rateLimiter = useRef(new RateLimit(20, 60000)); // 20 messages per minute
 
   // Generate Daedalus-specific responses based on user input
   const generateMeaningfulResponse = async (userInput: string): Promise<string> => {
@@ -130,15 +134,36 @@ const ChatInterface: React.FC = () => {
   const handleSend = () => {
     if (input.trim() === '') return;
     
+    // Rate limiting check
+    if (!rateLimiter.current.isAllowed('user')) {
+      toast({
+        title: "Rate limit exceeded",
+        description: "Please wait before sending another message.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    // Validate and sanitize input
+    const validation = validateChatMessage(input);
+    if (!validation.isValid) {
+      toast({
+        title: "Invalid message",
+        description: validation.error || "Please check your message and try again.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     const userMessage: Message = { 
       from: 'user', 
-      text: input, 
+      text: validation.sanitized, 
       timestamp: new Date(),
       type: 'normal' 
     };
     
     setMessages(prev => [...prev, userMessage]);
-    setContextAwareness(prev => [...prev, input]);
+    setContextAwareness(prev => [...prev, validation.sanitized]);
     setInput('');
     setIsTyping(true);
     
@@ -146,7 +171,7 @@ const ChatInterface: React.FC = () => {
     const responseTime = 1500 + Math.random() * 1000;
     
     setTimeout(async () => {
-      const responseText = await generateMeaningfulResponse(input);
+      const responseText = await generateMeaningfulResponse(validation.sanitized);
       const aiResponse: Message = {
         from: 'ai',
         text: responseText,
