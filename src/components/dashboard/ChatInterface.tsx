@@ -181,18 +181,18 @@ const ChatInterface: React.FC = () => {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 w-full max-w-md h-[80vh] bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-gray-200/50 flex flex-col p-4 animate-scale-in z-40">
+    <div className="fixed bottom-4 right-4 w-full max-w-md h-[80vh] bg-slate-900/95 backdrop-blur-md rounded-2xl shadow-2xl border border-cyan-400/20 flex flex-col p-4 animate-scale-in z-40">
       <div className="flex justify-between items-center mb-4 flex-shrink-0">
         <div className="flex items-center gap-2">
-          <MessageSquare className="w-6 h-6 text-blue-600" />
-          <h3 className="font-semibold text-lg text-gray-800">AI Assistant</h3>
-          <div className="w-2 h-2 bg-green-500 rounded-full" title="Online"></div>
+          <Brain className="w-6 h-6 text-cyan-400 animate-pulse" />
+          <h3 className="font-semibold text-lg text-cyan-400">Daedalus vΩ4</h3>
+          <div className="w-2 h-2 bg-green-400 rounded-full animate-ping" title="SIGMA.EXE Active"></div>
         </div>
         <Button 
           variant="ghost" 
           size="icon" 
           onClick={() => setIsOpen(false)} 
-          className="text-gray-500 hover:text-gray-700 hover:bg-gray-100"
+          className="text-slate-400 hover:text-slate-300 hover:bg-slate-800/50"
         >
           —
         </Button>
@@ -206,27 +206,27 @@ const ChatInterface: React.FC = () => {
             variant="outline"
             size="sm"
             onClick={action.action}
-            className="text-xs bg-gray-50 border-gray-200 text-gray-700 hover:bg-gray-100 transition-colors"
+            className="text-xs bg-slate-800/50 border-cyan-400/30 text-slate-300 hover:bg-slate-700/50 transition-colors"
           >
             {action.label}
           </Button>
         ))}
       </div>
       
-      {/* Messages Area with clean, professional background */}
-      <div className="flex-1 overflow-y-auto pr-2 space-y-4 mb-4 bg-gray-50/50 rounded-lg p-3 border border-gray-100">
+      {/* Messages Area with dark theme */}
+      <div className="flex-1 overflow-y-auto pr-2 space-y-4 mb-4 bg-slate-800/30 rounded-lg p-3 border border-slate-700/50">
         {messages.map((msg, i) => (
           <div key={i} className={cn('flex w-full', msg.from === 'ai' ? 'justify-start' : 'justify-end')}>
             <div className={cn(
               'p-3 rounded-lg max-w-[80%] animate-fade-in relative',
               msg.from === 'ai' 
-                ? 'bg-white text-gray-800 border border-gray-200 shadow-sm'
-                : 'bg-blue-600 text-white shadow-sm'
+                ? 'bg-slate-800/70 text-slate-100 border border-cyan-400/20 shadow-sm'
+                : 'bg-cyan-600 text-white shadow-sm'
             )}>
               {msg.from === 'ai' && msg.type === 'suggestion' && (
                 <div className="flex items-center gap-2 mb-2">
-                  <Zap className="w-4 h-4 text-amber-500" />
-                  <span className="text-xs text-amber-600 font-medium">Suggestion</span>
+                  <Zap className="w-4 h-4 text-amber-400" />
+                  <span className="text-xs text-amber-400 font-medium">Daedalus Insight</span>
                 </div>
               )}
               <p className="text-sm leading-relaxed whitespace-pre-line">{msg.text}</p>
@@ -239,15 +239,15 @@ const ChatInterface: React.FC = () => {
         
         {isTyping && (
           <div className="flex justify-start">
-            <div className="p-3 rounded-lg bg-white text-gray-800 animate-fade-in border border-gray-200 shadow-sm">
+            <div className="p-3 rounded-lg bg-slate-800/70 text-slate-100 animate-fade-in border border-cyan-400/20 shadow-sm">
               <div className="flex items-center gap-2">
-                <MessageSquare className="w-4 h-4 text-blue-600" />
-                <span className="text-xs text-gray-600 font-medium">AI is typing...</span>
+                <Brain className="w-4 h-4 text-cyan-400" />
+                <span className="text-xs text-slate-300 font-medium">Daedalus is processing...</span>
               </div>
               <div className="flex gap-1 mt-2">
-                <div className="w-2 h-2 bg-blue-400 rounded-full animate-ping"></div>
-                <div className="w-2 h-2 bg-blue-400 rounded-full animate-ping delay-200"></div>
-                <div className="w-2 h-2 bg-blue-400 rounded-full animate-ping delay-500"></div>
+                <div className="w-2 h-2 bg-cyan-400 rounded-full animate-ping"></div>
+                <div className="w-2 h-2 bg-cyan-400 rounded-full animate-ping delay-200"></div>
+                <div className="w-2 h-2 bg-cyan-400 rounded-full animate-ping delay-500"></div>
               </div>
             </div>
           </div>
@@ -256,7 +256,7 @@ const ChatInterface: React.FC = () => {
       </div>
       
       {/* Input Area */}
-      <div className="flex gap-2 flex-shrink-0 bg-gray-50/50 rounded-lg p-2 border border-gray-100">
+      <div className="flex gap-2 flex-shrink-0 bg-slate-800/30 rounded-lg p-2 border border-slate-700/50">
         <Textarea
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -266,14 +266,14 @@ const ChatInterface: React.FC = () => {
               handleSend();
             }
           }}
-          placeholder="Ask me anything or start a conversation..."
-          className="bg-white border-gray-200 text-gray-800 placeholder:text-gray-500 resize-none min-h-[40px] focus:border-blue-400 focus:ring-blue-400"
+          placeholder="Engage with Daedalus vΩ4..."
+          className="bg-slate-900/50 border-slate-600/50 text-slate-100 placeholder:text-slate-400 resize-none min-h-[40px] focus:border-cyan-400 focus:ring-cyan-400"
           rows={1}
         />
         <Button 
           onClick={handleSend} 
           size="icon" 
-          className="h-auto bg-blue-600 hover:bg-blue-700 transition-colors"
+          className="h-auto bg-cyan-600 hover:bg-cyan-500 transition-colors"
           disabled={isTyping}
         >
           <Send className="w-4 h-4" />
@@ -281,9 +281,9 @@ const ChatInterface: React.FC = () => {
       </div>
 
       {/* Status */}
-      <div className="mt-2 flex justify-between text-xs text-gray-500">
-        <span>Messages: {messages.length}</span>
-        <span>Conversations: {conversationCount}</span>
+      <div className="mt-2 flex justify-between text-xs text-slate-400">
+        <span>Neural Threads: {messages.length}</span>
+        <span>Cognition Cycles: {conversationCount}</span>
       </div>
     </div>
   );
