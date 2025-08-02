@@ -8,7 +8,7 @@
 
 *Code Like It's Music. Think Like It's Art. Build Like It's War.*
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-or4cl3ai--1.netlify.app-00D9FF?style=flat-square&logo=netlify)](https://or4cl3ai-1.netlify.app/)
+[![Live Demohttps://or4cl3ai-1.netlify.app/](https://img.shields.io/badge/Live%20Demo-or4cl3ai--1.netlify.app-00D9FF?style=flat-square&logo=netlify)](https://or4cl3ai-1.netlify.app/)
 [![Built with React](https://img.shields.io/badge/Built%20with-React-61DAFB?style=flat-square&logo=react)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-4.9+-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.0+-06B6D4?style=flat-square&logo=tailwindcss)](https://tailwindcss.com/)
